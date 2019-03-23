@@ -1,0 +1,27 @@
+1.通过脚本安装内核
+chmod +x tcp.sh
+./tcp.sh
+
+手动模式安装内核
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+yum --enablerepo=elrepo-kernel install kernel-ml -y
+egrep ^menuentry /etc/grub2.cfg | cut -f 2 -d \'
+grub2-set-default 0
+reboot
+
+检查命令：
+uname -r
+是否内核版本>4.9
+
+2.安装docker
+yum install -y docker
+
+3.运行docker
+service docker start
+
+
+4.开机启动
+sudo systemctl enable docker.
+
+5.sh run.sh
